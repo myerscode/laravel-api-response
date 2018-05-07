@@ -1,0 +1,46 @@
+{
+  "name": "myerscode/laravel-api-response",
+  "homepage": "https://github.com/myerscode/laravel-api-response",
+  "description": "A fluent helper and facade to ensure consistent, idempotent API responses in Laravel and Lumen",
+  "keywords": [
+    "api",
+    "response",
+    "body",
+    "idempotent",
+    "consistent",
+    "fluent"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "myerscode",
+      "email": "team@myerscode.com",
+      "homepage": "https://myerscode.com"
+    },
+    {
+      "name": "Fred Myerscough",
+      "email": "fred@myerscough.co.uk",
+      "homepage": "https://fredmyerscough.co.uk"
+    }
+  ],
+  "require": {
+    "php": ">=7.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Myerscode\\Laravel\\ApiResponse\\": "src"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  }
+}
