@@ -6,7 +6,7 @@
 You can install this package via composer:
 
 ``` bash
-composer require myerscode/laravel-idempotent-response
+composer require myerscode/laravel-api-response
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ Would return the following `JSON`
     },
     "meta": [],
     "messages": [
-        "Exercise created"
+        "Created record"
     ]
 }
 ```
