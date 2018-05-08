@@ -38,3 +38,8 @@ Would return the following `JSON`
 ```
 
 You can alternatively call `api()->respond()` to get a `JsonResponse`
+
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
