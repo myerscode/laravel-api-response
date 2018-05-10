@@ -1,12 +1,14 @@
 # Laravel API Response
-> A fluent helper and facade to ensure consistent, idempotent API responses in Laravel and Lumen
+> A fluent helper class to ensure idempotent API responses in Laravel and Lumen
+
+This package ensures your API will always return the same envelope shape, so consuming apps always know what to expect!
 
 ## Install
 
 You can install this package via composer:
 
 ``` bash
-composer require myerscode/laravel-idempotent-response
+composer require myerscode/laravel-api-response
 ```
 
 ## Usage
@@ -18,7 +20,7 @@ as it implements the [Responsable](https://laravel.com/api/master/Illuminate/Con
 
 function handler()
 {
-    return api()->status(201)->data(['name' => 'Foo Bar'])->message('Created record');
+    return api()->status(201)->data(['name' => 'Foo Bar'])->message('Record Created!');
 }
 ```
 
@@ -32,9 +34,14 @@ Would return the following `JSON`
     },
     "meta": [],
     "messages": [
-        "Exercise created"
+        "Record Created!"
     ]
 }
 ```
 
 You can alternatively call `api()->respond()` to get a `JsonResponse`
+
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
