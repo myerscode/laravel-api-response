@@ -1,5 +1,7 @@
 # Laravel API Response
-> A fluent helper and facade to ensure consistent, idempotent API responses in Laravel and Lumen
+> A fluent helper class to ensure idempotent API responses in Laravel and Lumen
+
+This package ensures your API will always return the same envelope shape, so consuming apps always know what to expect!
 
 ## Install
 
@@ -18,7 +20,7 @@ as it implements the [Responsable](https://laravel.com/api/master/Illuminate/Con
 
 function handler()
 {
-    return api()->status(201)->data(['name' => 'Foo Bar'])->message('Created record');
+    return api()->status(201)->data(['name' => 'Foo Bar'])->message('Record Created!');
 }
 ```
 
@@ -32,7 +34,7 @@ Would return the following `JSON`
     },
     "meta": [],
     "messages": [
-        "Created record"
+        "Record Created!"
     ]
 }
 ```
