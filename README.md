@@ -1,6 +1,10 @@
 # Laravel API Response
 > A fluent helper class to ensure idempotent API responses in Laravel and Lumen
 
+[![Latest Stable Version](https://poser.pugx.org/myerscode/laravel-api-response/v/stable)](https://packagist.org/packages/myerscode/laravel-api-response)
+[![Total Downloads](https://poser.pugx.org/myerscode/laravel-api-response/downloads)](https://packagist.org/packages/myerscode/laravel-api-response)
+[![License](https://poser.pugx.org/myerscode/laravel-api-response/license)](https://packagist.org/packages/myerscode/laravel-api-response)
+
 This package ensures your API will always return the same envelope shape, so consuming apps always know what to expect!
 
 ## Install
