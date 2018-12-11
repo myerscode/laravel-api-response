@@ -35,6 +35,16 @@ class Builder implements Responsable
     }
 
     /**
+     * Return the set response body
+     *
+     * @return Body
+     */
+    public function body()
+    {
+        return $this->body;
+    }
+
+    /**
      * Set the api data response
      *
      * @param array $data
