@@ -15,7 +15,6 @@ class BodyTest extends TestCase
         ];
     }
 
-
     /**
      * @dataProvider provider
      */
@@ -38,7 +37,6 @@ class BodyTest extends TestCase
         $this->assertEquals(['Hello World'], $body->getMessages());
     }
 
-
     /**
      * @dataProvider provider
      */
@@ -48,5 +46,17 @@ class BodyTest extends TestCase
         $body->setStatus(($status))->setData($data)->setMessages($messages)->setMeta($meta);
 
         $this->assertJson($body->toJson());
+    }
+
+    public function testInvalidJsonThrowsError()
+    {
+        $this->expectException(JsonEncodingException::class);
+
+        $body = \Mockery::mock(Body::class)->makePartial();
+
+        $body->shouldReceive('toArray')
+            ->andReturn([NAN]);
+
+        $body->toJson();
     }
 }
