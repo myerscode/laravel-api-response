@@ -2,6 +2,8 @@
 
 namespace Tests;
 
+use Illuminate\Foundation\Testing\TestResponse;
+
 class BuilderTest extends TestCase
 {
 
@@ -33,4 +35,19 @@ class BuilderTest extends TestCase
         $this->assertEquals(['Hello World'], $builder->body()->getMessages());
     }
 
+    public function testAddingHeaderToResponse()
+    {
+        $response = new TestResponse(api()->header('foo', 'bar')->respond());
+
+        $response->assertHeader('foo');
+    }
+
+    public function testAddingMultipleHeaderToResponse()
+    {
+        $response = new TestResponse(api()->headers(['foo' => 'bar', 'hello' => 'world', 'invalid header'])->respond());
+
+        $response->assertHeader('foo');
+        $response->assertHeader('hello');
+        $response->assertHeaderMissing('invalid header');
+    }
 }
