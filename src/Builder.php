@@ -12,7 +12,7 @@ class Builder implements Responsable
     protected $body;
 
     /**
-     * @var Header
+     * @var array
      */
     protected $headers;
 
@@ -105,6 +105,33 @@ class Builder implements Responsable
     public function status(int $status): Builder
     {
         $this->body->setStatus($status);
+
+        return $this;
+    }
+
+    /**
+     * Set a HTTP header value to be returned with the response
+     *
+     * @param string $key
+     * @param string $value
+     * @return $this
+     */
+    public function header(string $key, string $value)
+    {
+        $this->headers[$key] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set headers that should be returned with the response
+     *
+     * @param array $headers
+     * @return $this
+     */
+    public function headers(array $headers)
+    {
+        $this->headers = array_filter($headers);
 
         return $this;
     }
