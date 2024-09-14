@@ -27,6 +27,7 @@
   "require": {
     "php": "^8.2",
     "ext-json": "*",
+    "ext-fileinfo": "*",
     "illuminate/support": "^11.0"
   },
   "require-dev": {
