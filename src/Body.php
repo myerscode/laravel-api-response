@@ -32,10 +32,8 @@ class Body implements Arrayable, Jsonable
 
     /**
      * Status code of the response
-     *
-     * @var int $status
      */
-    private $status;
+    private int $status;
 
     public function __construct($data = [], $meta = [], $messages = [], int $status = 200)
     {
@@ -45,39 +43,25 @@ class Body implements Arrayable, Jsonable
         $this->setStatus($status);
     }
 
-    /**
-     * @return mixed
-     */
     public function getData(): array
     {
         return $this->data;
     }
 
-    /**
-     * @param mixed $data
-     *
-     * @return Body
-     */
-    public function setData($data): Body
+    
+    public function setData(mixed $data): Body
     {
         $this->data = $data;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getMessages(): array
     {
         return $this->messages;
     }
 
-    /**
-     * @param mixed $messages
-     *
-     * @return Body
-     */
+    
     public function setMessages(array $messages): Body
     {
         $this->messages = $messages;
@@ -87,8 +71,6 @@ class Body implements Arrayable, Jsonable
 
     /**
      * @param string $message
-     *
-     * @return Body
      */
     public function addMessage($message): Body
     {
@@ -97,39 +79,25 @@ class Body implements Arrayable, Jsonable
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
     public function getMeta(): array
     {
         return $this->meta;
     }
 
-    /**
-     * @param mixed $meta
-     *
-     * @return Body
-     */
-    public function setMeta($meta): Body
+    
+    public function setMeta(mixed $meta): Body
     {
         $this->meta = $meta;
 
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getStatus(): int
     {
         return $this->status;
     }
 
-    /**
-     * @param int $status
-     *
-     * @return Body
-     */
+    
     public function setStatus(int $status): Body
     {
         $this->status = $status;
@@ -141,7 +109,6 @@ class Body implements Arrayable, Jsonable
      * Convert the object to its JSON representation.
      *
      * @param  int $options
-     * @return string
      */
     public function toJson($options = 0): string
     {
@@ -156,8 +123,6 @@ class Body implements Arrayable, Jsonable
 
     /**
      * Get the instance as an array.
-     *
-     * @return array
      */
     public function toArray(): array
     {

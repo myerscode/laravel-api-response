@@ -2,13 +2,15 @@
 
 namespace Tests;
 
+use Mockery;
 use Illuminate\Database\Eloquent\JsonEncodingException;
 use Myerscode\Laravel\ApiResponse\Body;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class BodyTest extends TestCase
 {
 
-    public function provider()
+    public static function provider(): array
     {
         return [
             [200, [], [], []],
@@ -16,9 +18,15 @@ class BodyTest extends TestCase
     }
 
     /**
-     * @dataProvider provider
+     * @param $status
+     * @param $data
+     * @param $messages
+     * @param $meta
+     *
+     * @return void
      */
-    public function testResponsePropertiesAreSet($status, $data, $messages, $meta)
+    #[DataProvider('provider')]
+    public function testResponsePropertiesAreSet($status, $data, $messages, $meta): void
     {
         $body = new Body();
         $body->setStatus(($status))->setData($data)->setMessages($messages)->setMeta($meta);
@@ -29,7 +37,7 @@ class BodyTest extends TestCase
         $this->assertEquals($meta, $body->getMeta());
     }
 
-    public function testAddMessageToBody()
+    public function testAddMessageToBody(): void
     {
         $body = new Body();
         $body->addMessage(('Hello World'));
@@ -37,10 +45,8 @@ class BodyTest extends TestCase
         $this->assertEquals(['Hello World'], $body->getMessages());
     }
 
-    /**
-     * @dataProvider provider
-     */
-    public function testBodyConvertedToJson($status, $data, $messages, $meta)
+    #[DataProvider('provider')]
+    public function testBodyConvertedToJson($status, $data, $messages, $meta): void
     {
         $body = new Body();
         $body->setStatus(($status))->setData($data)->setMessages($messages)->setMeta($meta);
@@ -48,11 +54,11 @@ class BodyTest extends TestCase
         $this->assertJson($body->toJson());
     }
 
-    public function testInvalidJsonThrowsError()
+    public function testInvalidJsonThrowsError(): void
     {
         $this->expectException(JsonEncodingException::class);
 
-        $body = \Mockery::mock(Body::class)->makePartial();
+        $body = Mockery::mock(Body::class)->makePartial();
 
         $body->shouldReceive('toArray')
             ->andReturn([NAN]);

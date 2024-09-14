@@ -23,8 +23,6 @@ class Builder implements Responsable
 
     /**
      * Reset response body, headers and options
-     *
-     * @return Builder
      */
     public function fresh(): Builder
     {
@@ -46,9 +44,6 @@ class Builder implements Responsable
 
     /**
      * Set the api data response
-     *
-     * @param array $data
-     * @return Builder
      */
     public function data(array $data): Builder
     {
@@ -59,9 +54,6 @@ class Builder implements Responsable
 
     /**
      * Set meta data of current api response
-     *
-     * @param array $meta
-     * @return Builder
      */
     public function meta(array $meta): Builder
     {
@@ -72,9 +64,6 @@ class Builder implements Responsable
 
     /**
      * Add a response message
-     *
-     * @param string $messages
-     * @return Builder
      */
     public function message(string $messages): Builder
     {
@@ -85,9 +74,6 @@ class Builder implements Responsable
 
     /**
      * Set collection of response messages
-     *
-     * @param array $messages
-     * @return Builder
      */
     public function messages(array $messages): Builder
     {
@@ -98,9 +84,6 @@ class Builder implements Responsable
 
     /**
      * Set HTTP status of response
-     *
-     * @param int $status
-     * @return Builder
      */
     public function status(int $status): Builder
     {
@@ -112,11 +95,9 @@ class Builder implements Responsable
     /**
      * Set a HTTP header value to be returned with the response
      *
-     * @param string $key
-     * @param string $value
      * @return $this
      */
-    public function header(string $key, string $value)
+    public function header(string $key, string $value): static
     {
         $this->headers[$key] = $value;
 
@@ -126,10 +107,9 @@ class Builder implements Responsable
     /**
      * Set headers that should be returned with the response
      *
-     * @param array $headers
      * @return $this
      */
-    public function headers(array $headers)
+    public function headers(array $headers): static
     {
         $this->headers = array_filter($headers);
 

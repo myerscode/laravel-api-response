@@ -1,14 +1,13 @@
 <?php
 
+use Myerscode\Laravel\ApiResponse\Builder;
 if (!function_exists('api')) {
 
     /**
      * Start creating a idempotent api response
-     *
-     * @return \Myerscode\Laravel\ApiResponse\Builder
      */
-    function api()
+    function api(): Builder
     {
-        return new \Myerscode\Laravel\ApiResponse\Builder();
+        return new Builder();
     }
 }
