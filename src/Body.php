@@ -5,6 +5,7 @@ namespace Myerscode\Laravel\ApiResponse;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Database\Eloquent\JsonEncodingException;
+use Illuminate\Support\Collection;
 
 class Body implements Arrayable, Jsonable
 {
@@ -35,7 +36,7 @@ class Body implements Arrayable, Jsonable
      */
     private int $status;
 
-    public function __construct($data = [], $meta = [], $messages = [], int $status = 200)
+    public function __construct(array|Collection $data = [], array|Collection $meta = [], array|Collection $messages = [], int $status = 200)
     {
         $this->setData($data);
         $this->setMeta($meta);
@@ -48,8 +49,8 @@ class Body implements Arrayable, Jsonable
         return $this->data;
     }
 
-    
-    public function setData(mixed $data): Body
+
+    public function setData(array|Collection $data): Body
     {
         $this->data = $data;
 
@@ -61,18 +62,14 @@ class Body implements Arrayable, Jsonable
         return $this->messages;
     }
 
-    
-    public function setMessages(array $messages): Body
+    public function setMessages(array|Collection $messages): Body
     {
         $this->messages = $messages;
 
         return $this;
     }
 
-    /**
-     * @param string $message
-     */
-    public function addMessage($message): Body
+    public function addMessage(string $message): Body
     {
         $this->messages[] = $message;
 
@@ -84,8 +81,7 @@ class Body implements Arrayable, Jsonable
         return $this->meta;
     }
 
-    
-    public function setMeta(mixed $meta): Body
+    public function setMeta(array|Collection $meta): Body
     {
         $this->meta = $meta;
 
@@ -97,7 +93,7 @@ class Body implements Arrayable, Jsonable
         return $this->status;
     }
 
-    
+
     public function setStatus(int $status): Body
     {
         $this->status = $status;
