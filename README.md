@@ -4,10 +4,8 @@
 [![Latest Stable Version](https://poser.pugx.org/myerscode/laravel-api-response/v/stable)](https://packagist.org/packages/myerscode/laravel-api-response)
 [![Total Downloads](https://poser.pugx.org/myerscode/laravel-api-response/downloads)](https://packagist.org/packages/myerscode/laravel-api-response)
 [![License](https://poser.pugx.org/myerscode/laravel-api-response/license)](https://packagist.org/packages/myerscode/laravel-api-response)
-
 ![Tests](https://github.com/myerscode/laravel-api-response/actions/workflows/tests.yml/badge.svg?branch=main)
-[![codecov](https://codecov.io/gh/myerscode/laravel-api-response/graph/badge.svg](https://codecov.io/gh/myerscode/laravel-api-response)
-
+[![codecov](https://codecov.io/gh/myerscode/laravel-api-response/branch/main/graph/badge.svg?token=5ATH3Y8AX6)](https://codecov.io/gh/myerscode/laravel-api-response)
 ## Why is this package helpful?
 
 This package ensures your API will always return the same envelope shape, so consuming apps always know what to expect!
