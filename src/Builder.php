@@ -3,18 +3,13 @@
 namespace Myerscode\Laravel\ApiResponse;
 
 use Illuminate\Contracts\Support\Responsable;
+use Illuminate\Http\JsonResponse;
 
 class Builder implements Responsable
 {
-    /**
-     * @var Body
-     */
-    protected $body;
+    protected $body = [];
 
-    /**
-     * @var array
-     */
-    protected $headers;
+    protected $headers  = [];
 
     public function __construct()
     {
@@ -27,7 +22,6 @@ class Builder implements Responsable
     public function fresh(): Builder
     {
         $this->body = new Body();
-        $this->headers = [];
 
         return $this;
     }
@@ -94,8 +88,6 @@ class Builder implements Responsable
 
     /**
      * Set a HTTP header value to be returned with the response
-     *
-     * @return $this
      */
     public function header(string $key, string $value): static
     {
@@ -106,8 +98,6 @@ class Builder implements Responsable
 
     /**
      * Set headers that should be returned with the response
-     *
-     * @return $this
      */
     public function headers(array $headers): static
     {
@@ -118,21 +108,17 @@ class Builder implements Responsable
 
     /**
      * Return a json response using the api body
-     *
-     * @return \Illuminate\Http\JsonResponse
      */
-    public function respond()
+    public function respond(): JsonResponse
     {
         return response()->json($this->body->toArray(), $this->body->getStatus(), $this->headers);
     }
 
     /**
      * Create an HTTP response that represents the object.
-     *
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
      */
-    public function toResponse($request)
+    public function toResponse($request): JsonResponse
     {
         return $this->respond();
     }
