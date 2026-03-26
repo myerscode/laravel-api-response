@@ -11,6 +11,7 @@ class Builder implements Responsable
 {
     protected Body $body;
 
+    /** @var array<string, string> */
     protected array $headers = [];
 
     public function __construct()
@@ -23,6 +24,7 @@ class Builder implements Responsable
         return $this->body;
     }
 
+    /** @param  array<array-key, mixed>  $data */
     public function data(array $data): self
     {
         $this->body->setData($data);
@@ -44,6 +46,7 @@ class Builder implements Responsable
         return $this;
     }
 
+    /** @param  array<string, string>  $headers */
     public function headers(array $headers): self
     {
         $this->headers = array_filter($headers);
@@ -58,6 +61,7 @@ class Builder implements Responsable
         return $this;
     }
 
+    /** @param  array<int, string>  $messages */
     public function messages(array $messages): self
     {
         $this->body->setMessages($messages);
@@ -65,6 +69,7 @@ class Builder implements Responsable
         return $this;
     }
 
+    /** @param  array<array-key, mixed>  $meta */
     public function meta(array $meta): self
     {
         $this->body->setMeta($meta);

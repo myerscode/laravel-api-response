@@ -9,16 +9,27 @@ use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Database\Eloquent\JsonEncodingException;
 use Illuminate\Support\Collection;
 
+/**
+ * @implements Arrayable<string, mixed>
+ */
 class Body implements Arrayable, Jsonable
 {
-    private Collection|array $data;
+    /** @var array<array-key, mixed> */
+    private array $data;
 
-    private Collection|array $messages;
+    /** @var array<int, string> */
+    private array $messages;
 
-    private Collection|array $meta;
+    /** @var array<array-key, mixed> */
+    private array $meta;
 
     private int $status;
 
+    /**
+     * @param  array<array-key, mixed>|Collection<array-key, mixed>  $data
+     * @param  array<array-key, mixed>|Collection<array-key, mixed>  $meta
+     * @param  array<int, string>|Collection<int, string>  $messages
+     */
     public function __construct(
         array|Collection $data = [],
         array|Collection $meta = [],
@@ -38,16 +49,19 @@ class Body implements Arrayable, Jsonable
         return $this;
     }
 
+    /** @return array<array-key, mixed> */
     public function getData(): array
     {
         return $this->data;
     }
 
+    /** @return array<int, string> */
     public function getMessages(): array
     {
         return $this->messages;
     }
 
+    /** @return array<array-key, mixed> */
     public function getMeta(): array
     {
         return $this->meta;
@@ -58,23 +72,26 @@ class Body implements Arrayable, Jsonable
         return $this->status;
     }
 
+    /** @param  array<array-key, mixed>|Collection<array-key, mixed>  $data */
     public function setData(array|Collection $data): self
     {
-        $this->data = $data;
+        $this->data = $data instanceof Collection ? $data->toArray() : $data;
 
         return $this;
     }
 
+    /** @param  array<int, string>|Collection<int, string>  $messages */
     public function setMessages(array|Collection $messages): self
     {
-        $this->messages = $messages;
+        $this->messages = $messages instanceof Collection ? $messages->toArray() : $messages;
 
         return $this;
     }
 
+    /** @param  array<array-key, mixed>|Collection<array-key, mixed>  $meta */
     public function setMeta(array|Collection $meta): self
     {
-        $this->meta = $meta;
+        $this->meta = $meta instanceof Collection ? $meta->toArray() : $meta;
 
         return $this;
     }
@@ -86,6 +103,7 @@ class Body implements Arrayable, Jsonable
         return $this;
     }
 
+    /** @return array{status: int, data: array<array-key, mixed>, meta: array<array-key, mixed>, messages: array<int, string>} */
     public function toArray(): array
     {
         return [
@@ -100,7 +118,7 @@ class Body implements Arrayable, Jsonable
     {
         $json = json_encode($this->toArray(), $options);
 
-        if (JSON_ERROR_NONE !== json_last_error()) {
+        if ($json === false || JSON_ERROR_NONE !== json_last_error()) {
             throw new JsonEncodingException();
         }
 
