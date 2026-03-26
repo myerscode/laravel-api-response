@@ -1,23 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests;
 
 use Illuminate\Testing\TestResponse;
+use Iterator;
 use PHPUnit\Framework\Attributes\DataProvider;
 
-class BuilderTest extends TestCase
+final class BuilderTest extends TestCase
 {
 
-    public static function provider(): array
+    public static function provider(): Iterator
     {
-        return [
-            [200, [], [], []],
-        ];
+        yield [200, [], [], []];
     }
 
 
     #[DataProvider('provider')]
-    public function testResponsePropertiesAreSet($status, $data, $messages, $meta): void
+    public function testResponsePropertiesAreSet(int $status, array $data, array $messages, array $meta): void
     {
         $builder = api()->status($status)->data($data)->messages($messages)->meta($meta);
 

@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Myerscode\Laravel\ApiResponse\Builder;
 
-class RespondTest extends TestCase
+final class RespondTest extends TestCase
 {
 
     public function testHelperMakesBuilder(): void

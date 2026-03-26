@@ -1,37 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests;
 
 use Mockery;
 use Illuminate\Database\Eloquent\JsonEncodingException;
+use Iterator;
 use Myerscode\Laravel\ApiResponse\Body;
 use PHPUnit\Framework\Attributes\DataProvider;
 
-class BodyTest extends TestCase
+final class BodyTest extends TestCase
 {
 
-    public static function provider(): array
+    public static function provider(): Iterator
     {
-        return [
-            [200, [], [], []],
-        ];
+        yield [200, [], [], []];
     }
 
-    /**
-     * @param $status
-     * @param $data
-     * @param $messages
-     * @param $meta
-     *
-     * @return void
-     */
     #[DataProvider('provider')]
-    public function testResponsePropertiesAreSet($status, $data, $messages, $meta): void
+    public function testResponsePropertiesAreSet(int $status, array $data, array $messages, array $meta): void
     {
         $body = new Body();
         $body->setStatus(($status))->setData($data)->setMessages($messages)->setMeta($meta);
 
-        $this->assertEquals($status, $body->getStatus());
+        $this->assertSame($status, $body->getStatus());
         $this->assertEquals($data, $body->getData());
         $this->assertEquals($messages, $body->getMessages());
         $this->assertEquals($meta, $body->getMeta());
@@ -42,11 +35,11 @@ class BodyTest extends TestCase
         $body = new Body();
         $body->addMessage(('Hello World'));
 
-        $this->assertEquals(['Hello World'], $body->getMessages());
+        $this->assertSame(['Hello World'], $body->getMessages());
     }
 
     #[DataProvider('provider')]
-    public function testBodyConvertedToJson($status, $data, $messages, $meta): void
+    public function testBodyConvertedToJson(int $status, array $data, array $messages, array $meta): void
     {
         $body = new Body();
         $body->setStatus(($status))->setData($data)->setMessages($messages)->setMeta($meta);
@@ -58,11 +51,11 @@ class BodyTest extends TestCase
     {
         $this->expectException(JsonEncodingException::class);
 
-        $body = Mockery::mock(Body::class)->makePartial();
+        $legacyMock = Mockery::mock(Body::class)->makePartial();
 
-        $body->shouldReceive('toArray')
+        $legacyMock->shouldReceive('toArray')
             ->andReturn([NAN]);
 
-        $body->toJson();
+        $legacyMock->toJson();
     }
 }

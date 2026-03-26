@@ -12,24 +12,18 @@ class Body implements Arrayable, Jsonable
 
     /**
      * Collect of json data to return
-     *
-     * @var array
      */
-    private $data;
+    private Collection|array $data;
 
     /**
      * Meta values of response
-     *
-     * @var array
      */
-    private $meta;
+    private Collection|array $meta;
 
     /**
      * Collection of messages
-     *
-     * @var array
      */
-    private $messages;
+    private Collection|array $messages;
 
     /**
      * Status code of the response
