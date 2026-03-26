@@ -28,11 +28,10 @@
     "php": "^8.5",
     "ext-json": "*",
     "ext-fileinfo": "*",
-    "illuminate/support": "^11.0"
+    "illuminate/support": "^13.0"
   },
   "require-dev": {
-    "mockery/mockery": "^1.2",
-    "orchestra/testbench": "v9.0.3",
+    "orchestra/testbench": "^11.0",
     "phpunit/phpunit": "^11.0"
   },
   "autoload": {
