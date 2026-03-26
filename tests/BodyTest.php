@@ -12,22 +12,9 @@ use PHPUnit\Framework\Attributes\DataProvider;
 
 final class BodyTest extends TestCase
 {
-
     public static function provider(): Iterator
     {
         yield [200, [], [], []];
-    }
-
-    #[DataProvider('provider')]
-    public function testResponsePropertiesAreSet(int $status, array $data, array $messages, array $meta): void
-    {
-        $body = new Body();
-        $body->setStatus(($status))->setData($data)->setMessages($messages)->setMeta($meta);
-
-        $this->assertSame($status, $body->getStatus());
-        $this->assertEquals($data, $body->getData());
-        $this->assertEquals($messages, $body->getMessages());
-        $this->assertEquals($meta, $body->getMeta());
     }
 
     public function testAddMessageToBody(): void
@@ -58,5 +45,17 @@ final class BodyTest extends TestCase
             ->willReturn([NAN]);
 
         $body->toJson();
+    }
+
+    #[DataProvider('provider')]
+    public function testResponsePropertiesAreSet(int $status, array $data, array $messages, array $meta): void
+    {
+        $body = new Body();
+        $body->setStatus(($status))->setData($data)->setMessages($messages)->setMeta($meta);
+
+        $this->assertSame($status, $body->getStatus());
+        $this->assertEquals($data, $body->getData());
+        $this->assertEquals($messages, $body->getMessages());
+        $this->assertEquals($meta, $body->getMeta());
     }
 }

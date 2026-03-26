@@ -13,9 +13,9 @@ class Body implements Arrayable, Jsonable
 {
     private Collection|array $data;
 
-    private Collection|array $meta;
-
     private Collection|array $messages;
+
+    private Collection|array $meta;
 
     private int $status;
 
@@ -31,9 +31,31 @@ class Body implements Arrayable, Jsonable
         $this->setStatus($status);
     }
 
+    public function addMessage(string $message): self
+    {
+        $this->messages[] = $message;
+
+        return $this;
+    }
+
     public function getData(): array
     {
         return $this->data;
+    }
+
+    public function getMessages(): array
+    {
+        return $this->messages;
+    }
+
+    public function getMeta(): array
+    {
+        return $this->meta;
+    }
+
+    public function getStatus(): int
+    {
+        return $this->status;
     }
 
     public function setData(array|Collection $data): self
@@ -43,28 +65,11 @@ class Body implements Arrayable, Jsonable
         return $this;
     }
 
-    public function getMessages(): array
-    {
-        return $this->messages;
-    }
-
     public function setMessages(array|Collection $messages): self
     {
         $this->messages = $messages;
 
         return $this;
-    }
-
-    public function addMessage(string $message): self
-    {
-        $this->messages[] = $message;
-
-        return $this;
-    }
-
-    public function getMeta(): array
-    {
-        return $this->meta;
     }
 
     public function setMeta(array|Collection $meta): self
@@ -74,16 +79,21 @@ class Body implements Arrayable, Jsonable
         return $this;
     }
 
-    public function getStatus(): int
-    {
-        return $this->status;
-    }
-
     public function setStatus(int $status): self
     {
         $this->status = $status;
 
         return $this;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'status' => $this->getStatus(),
+            'data' => $this->getData(),
+            'meta' => $this->getMeta(),
+            'messages' => $this->getMessages(),
+        ];
     }
 
     public function toJson($options = 0): string
@@ -95,15 +105,5 @@ class Body implements Arrayable, Jsonable
         }
 
         return $json;
-    }
-
-    public function toArray(): array
-    {
-        return [
-            'status' => $this->getStatus(),
-            'data' => $this->getData(),
-            'meta' => $this->getMeta(),
-            'messages' => $this->getMessages(),
-        ];
     }
 }

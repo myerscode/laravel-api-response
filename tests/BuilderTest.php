@@ -10,29 +10,9 @@ use PHPUnit\Framework\Attributes\DataProvider;
 
 final class BuilderTest extends TestCase
 {
-
     public static function provider(): Iterator
     {
         yield [200, [], [], []];
-    }
-
-
-    #[DataProvider('provider')]
-    public function testResponsePropertiesAreSet(int $status, array $data, array $messages, array $meta): void
-    {
-        $builder = api()->status($status)->data($data)->messages($messages)->meta($meta);
-
-        $this->assertEquals($status, $builder->body()->getStatus());
-        $this->assertEquals($data, $builder->body()->getData());
-        $this->assertEquals($messages, $builder->body()->getMessages());
-        $this->assertEquals($meta, $builder->body()->getMeta());
-    }
-
-    public function testAddMessageToResponse(): void
-    {
-        $builder = api()->message('Hello World');
-
-        $this->assertEquals(['Hello World'], $builder->body()->getMessages());
     }
 
     public function testAddingHeaderToResponse(): void
@@ -49,5 +29,24 @@ final class BuilderTest extends TestCase
         $testResponse->assertHeader('foo');
         $testResponse->assertHeader('hello');
         $testResponse->assertHeaderMissing('invalid header');
+    }
+
+    public function testAddMessageToResponse(): void
+    {
+        $builder = api()->message('Hello World');
+
+        $this->assertEquals(['Hello World'], $builder->body()->getMessages());
+    }
+
+
+    #[DataProvider('provider')]
+    public function testResponsePropertiesAreSet(int $status, array $data, array $messages, array $meta): void
+    {
+        $builder = api()->status($status)->data($data)->messages($messages)->meta($meta);
+
+        $this->assertEquals($status, $builder->body()->getStatus());
+        $this->assertEquals($data, $builder->body()->getData());
+        $this->assertEquals($messages, $builder->body()->getMessages());
+        $this->assertEquals($meta, $builder->body()->getMeta());
     }
 }

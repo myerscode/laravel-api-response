@@ -6,7 +6,6 @@ namespace Myerscode\Laravel\ApiResponse;
 
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class Builder implements Responsable
 {
@@ -17,13 +16,6 @@ class Builder implements Responsable
     public function __construct()
     {
         $this->fresh();
-    }
-
-    public function fresh(): self
-    {
-        $this->body = new Body();
-
-        return $this;
     }
 
     public function body(): Body
@@ -38,30 +30,9 @@ class Builder implements Responsable
         return $this;
     }
 
-    public function meta(array $meta): self
+    public function fresh(): self
     {
-        $this->body->setMeta($meta);
-
-        return $this;
-    }
-
-    public function message(string $messages): self
-    {
-        $this->body->addMessage($messages);
-
-        return $this;
-    }
-
-    public function messages(array $messages): self
-    {
-        $this->body->setMessages($messages);
-
-        return $this;
-    }
-
-    public function status(int $status): self
-    {
-        $this->body->setStatus($status);
+        $this->body = new Body();
 
         return $this;
     }
@@ -80,9 +51,37 @@ class Builder implements Responsable
         return $this;
     }
 
+    public function message(string $messages): self
+    {
+        $this->body->addMessage($messages);
+
+        return $this;
+    }
+
+    public function messages(array $messages): self
+    {
+        $this->body->setMessages($messages);
+
+        return $this;
+    }
+
+    public function meta(array $meta): self
+    {
+        $this->body->setMeta($meta);
+
+        return $this;
+    }
+
     public function respond(): JsonResponse
     {
         return response()->json($this->body->toArray(), $this->body->getStatus(), $this->headers);
+    }
+
+    public function status(int $status): self
+    {
+        $this->body->setStatus($status);
+
+        return $this;
     }
 
     public function toResponse($request): JsonResponse

@@ -10,7 +10,6 @@ use Myerscode\Laravel\ApiResponse\Builder;
 
 final class RespondTest extends TestCase
 {
-
     public function testHelperMakesBuilder(): void
     {
         $this->assertInstanceOf(Builder::class, api());
@@ -19,7 +18,7 @@ final class RespondTest extends TestCase
     public function testRespondCreatesJsonResponse(): void
     {
         $this->assertInstanceOf(JsonResponse::class, api()->respond());
-        $this->assertInstanceOf(JsonResponse::class,  api()->toResponse( new Request()));
+        $this->assertInstanceOf(JsonResponse::class, api()->toResponse(new Request()));
     }
 
 
