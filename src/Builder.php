@@ -1,123 +1,90 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Myerscode\Laravel\ApiResponse;
 
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class Builder implements Responsable
 {
-    protected $body = [];
+    protected Body $body;
 
-    protected $headers  = [];
+    protected array $headers = [];
 
     public function __construct()
     {
         $this->fresh();
     }
 
-    /**
-     * Reset response body, headers and options
-     */
-    public function fresh(): Builder
+    public function fresh(): self
     {
         $this->body = new Body();
 
         return $this;
     }
 
-    /**
-     * Return the set response body
-     *
-     * @return Body
-     */
-    public function body()
+    public function body(): Body
     {
         return $this->body;
     }
 
-    /**
-     * Set the api data response
-     */
-    public function data(array $data): Builder
+    public function data(array $data): self
     {
         $this->body->setData($data);
 
         return $this;
     }
 
-    /**
-     * Set meta data of current api response
-     */
-    public function meta(array $meta): Builder
+    public function meta(array $meta): self
     {
         $this->body->setMeta($meta);
 
         return $this;
     }
 
-    /**
-     * Add a response message
-     */
-    public function message(string $messages): Builder
+    public function message(string $messages): self
     {
         $this->body->addMessage($messages);
 
         return $this;
     }
 
-    /**
-     * Set collection of response messages
-     */
-    public function messages(array $messages): Builder
+    public function messages(array $messages): self
     {
         $this->body->setMessages($messages);
 
         return $this;
     }
 
-    /**
-     * Set HTTP status of response
-     */
-    public function status(int $status): Builder
+    public function status(int $status): self
     {
         $this->body->setStatus($status);
 
         return $this;
     }
 
-    /**
-     * Set a HTTP header value to be returned with the response
-     */
-    public function header(string $key, string $value): static
+    public function header(string $key, string $value): self
     {
         $this->headers[$key] = $value;
 
         return $this;
     }
 
-    /**
-     * Set headers that should be returned with the response
-     */
-    public function headers(array $headers): static
+    public function headers(array $headers): self
     {
         $this->headers = array_filter($headers);
 
         return $this;
     }
 
-    /**
-     * Return a json response using the api body
-     */
     public function respond(): JsonResponse
     {
         return response()->json($this->body->toArray(), $this->body->getStatus(), $this->headers);
     }
 
-    /**
-     * Create an HTTP response that represents the object.
-     * @param  \Illuminate\Http\Request $request
-     */
     public function toResponse($request): JsonResponse
     {
         return $this->respond();

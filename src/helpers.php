@@ -1,11 +1,10 @@
 <?php
 
-use Myerscode\Laravel\ApiResponse\Builder;
-if (!function_exists('api')) {
+declare(strict_types=1);
 
-    /**
-     * Start creating a idempotent api response
-     */
+use Myerscode\Laravel\ApiResponse\Builder;
+
+if (!function_exists('api')) {
     function api(): Builder
     {
         return new Builder();

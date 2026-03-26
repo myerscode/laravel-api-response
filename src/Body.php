@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Myerscode\Laravel\ApiResponse;
 
 use Illuminate\Contracts\Support\Arrayable;
@@ -9,29 +11,20 @@ use Illuminate\Support\Collection;
 
 class Body implements Arrayable, Jsonable
 {
-
-    /**
-     * Collect of json data to return
-     */
     private Collection|array $data;
 
-    /**
-     * Meta values of response
-     */
     private Collection|array $meta;
 
-    /**
-     * Collection of messages
-     */
     private Collection|array $messages;
 
-    /**
-     * Status code of the response
-     */
     private int $status;
 
-    public function __construct(array|Collection $data = [], array|Collection $meta = [], array|Collection $messages = [], int $status = 200)
-    {
+    public function __construct(
+        array|Collection $data = [],
+        array|Collection $meta = [],
+        array|Collection $messages = [],
+        int $status = 200,
+    ) {
         $this->setData($data);
         $this->setMeta($meta);
         $this->setMessages($messages);
@@ -43,8 +36,7 @@ class Body implements Arrayable, Jsonable
         return $this->data;
     }
 
-
-    public function setData(array|Collection $data): Body
+    public function setData(array|Collection $data): self
     {
         $this->data = $data;
 
@@ -56,14 +48,14 @@ class Body implements Arrayable, Jsonable
         return $this->messages;
     }
 
-    public function setMessages(array|Collection $messages): Body
+    public function setMessages(array|Collection $messages): self
     {
         $this->messages = $messages;
 
         return $this;
     }
 
-    public function addMessage(string $message): Body
+    public function addMessage(string $message): self
     {
         $this->messages[] = $message;
 
@@ -75,7 +67,7 @@ class Body implements Arrayable, Jsonable
         return $this->meta;
     }
 
-    public function setMeta(array|Collection $meta): Body
+    public function setMeta(array|Collection $meta): self
     {
         $this->meta = $meta;
 
@@ -87,33 +79,24 @@ class Body implements Arrayable, Jsonable
         return $this->status;
     }
 
-
-    public function setStatus(int $status): Body
+    public function setStatus(int $status): self
     {
         $this->status = $status;
 
         return $this;
     }
 
-    /**
-     * Convert the object to its JSON representation.
-     *
-     * @param  int $options
-     */
     public function toJson($options = 0): string
     {
         $json = json_encode($this->toArray(), $options);
 
         if (JSON_ERROR_NONE !== json_last_error()) {
-            throw new JsonEncodingException;
+            throw new JsonEncodingException();
         }
 
         return $json;
     }
 
-    /**
-     * Get the instance as an array.
-     */
     public function toArray(): array
     {
         return [
