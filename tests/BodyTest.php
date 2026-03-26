@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Mockery;
 use Illuminate\Database\Eloquent\JsonEncodingException;
 use Iterator;
 use Myerscode\Laravel\ApiResponse\Body;
+use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 final class BodyTest extends TestCase
@@ -47,15 +47,16 @@ final class BodyTest extends TestCase
         $this->assertJson($body->toJson());
     }
 
+    #[AllowMockObjectsWithoutExpectations]
     public function testInvalidJsonThrowsError(): void
     {
         $this->expectException(JsonEncodingException::class);
 
-        $legacyMock = Mockery::mock(Body::class)->makePartial();
+        $body = $this->createPartialMock(Body::class, ['toArray']);
 
-        $legacyMock->shouldReceive('toArray')
-            ->andReturn([NAN]);
+        $body->method('toArray')
+            ->willReturn([NAN]);
 
-        $legacyMock->toJson();
+        $body->toJson();
     }
 }
