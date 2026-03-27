@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [13.0.0] - 2026-03-27
+### New Features
+- [`4eb3697`](https://github.com/myerscode/laravel-api-response/commit/4eb3697b12185a032287649df808e3d5c4e3a539) - **docs**: added new changelog *(commit by [@oniice](https://github.com/oniice))*
+- [`845fb1c`](https://github.com/myerscode/laravel-api-response/commit/845fb1c2133ea2fe7389e89e1fa87d0c2232cd89) - **laravel**: update to Laravel 13 and Testbench 11 *(commit by [@oniice](https://github.com/oniice))*
+
+### Bug Fixes
+- [`30f9c0e`](https://github.com/myerscode/laravel-api-response/commit/30f9c0e38552eafed26bcc48ca4afa963a0d4584) - **builder**: reset headers when calling fresh *(commit by [@oniice](https://github.com/oniice))*
+- [`3f3c9c2`](https://github.com/myerscode/laravel-api-response/commit/3f3c9c2638303f452c8be4df5c3c15cad57106d0) - resolve Larastan level 8 issues *(commit by [@oniice](https://github.com/oniice))*
+
+### Performance Improvements
+- [`9b641e2`](https://github.com/myerscode/laravel-api-response/commit/9b641e2fbca41c862cbe6a6bb9dc3f49035e4c32) - **core**: added typings to contructor and methods *(commit by [@oniice](https://github.com/oniice))*
+
+### Refactors
+- [`f0c1d30`](https://github.com/myerscode/laravel-api-response/commit/f0c1d303b823c8ddc569869073480e28e7f6ac10) - modernise codebase with Rector *(commit by [@oniice](https://github.com/oniice))*
+- [`c0c588a`](https://github.com/myerscode/laravel-api-response/commit/c0c588adc0930293af3c33f846d0e1b4e1e22d93) - modernise PHP and Laravel patterns *(commit by [@oniice](https://github.com/oniice))*
+
+
 ## Unreleased
 
 ## [11.0.0](https://github.com/myerscode/laravel-api-response/releases/tag/11.0.0) - 2024-09-15
@@ -49,3 +66,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 - [`424c435`](https://github.com/myerscode/laravel-api-response/commit/424c43564af6f3408de7139faa9304116b15e0ae) docs: added usage example
 - [`cd6933d`](https://github.com/myerscode/laravel-api-response/commit/cd6933dd348124ddb5d80be02e0b80626ad6c8c9) created package
+[13.0.0]: https://github.com/myerscode/laravel-api-response/compare/11.0.0...13.0.0
