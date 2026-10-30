@@ -5,7 +5,7 @@
 [![Total Downloads](https://poser.pugx.org/myerscode/laravel-api-response/downloads)](https://packagist.org/packages/myerscode/laravel-api-response)
 [![PHP Version Require](http://poser.pugx.org/myerscode/laravel-api-response/require/php)](https://packagist.org/packages/myerscode/laravel-api-response)
 [![License](https://poser.pugx.org/myerscode/laravel-api-response/license)](https://github.com/myerscode/laravel-api-response/blob/main/LICENSE)
-[![Tests](https://github.com/myerscode/laravel-api-response/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/myerscode/laravel-api-response/actions/workflows/tests.yml)
+[![Tests](https://github.com/myerscode/laravel-api-response/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/myerscode/laravel-api-response/actions/workflows/tests.yml)
 [![codecov](https://codecov.io/gh/myerscode/laravel-api-response/graph/badge.svg)](https://codecov.io/gh/myerscode/laravel-api-response)
 
 ## Why is this package helpful?
