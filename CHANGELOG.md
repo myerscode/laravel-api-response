@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [13.0.1] - 2026-10-31
+### New Features
+- [`dfa73c3`](https://github.com/myerscode/laravel-api-response/commit/dfa73c365629113fbea05db0ad745d1ea87c1d0c) - **ci**: add shared dependabot auto-merge *(PR [#5](https://github.com/myerscode/laravel-api-response/pull/5) by [@oniice](https://github.com/oniice))*
+
+
 ## [13.0.0] - 2026-03-27
 ### New Features
 - [`4eb3697`](https://github.com/myerscode/laravel-api-response/commit/4eb3697b12185a032287649df808e3d5c4e3a539) - **docs**: added new changelog *(commit by [@oniice](https://github.com/oniice))*
@@ -67,3 +72,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - [`424c435`](https://github.com/myerscode/laravel-api-response/commit/424c43564af6f3408de7139faa9304116b15e0ae) docs: added usage example
 - [`cd6933d`](https://github.com/myerscode/laravel-api-response/commit/cd6933dd348124ddb5d80be02e0b80626ad6c8c9) created package
 [13.0.0]: https://github.com/myerscode/laravel-api-response/compare/11.0.0...13.0.0
+[13.0.1]: https://github.com/myerscode/laravel-api-response/compare/13.0.0...13.0.1
